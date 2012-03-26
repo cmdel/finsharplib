@@ -169,7 +169,7 @@ let next_ibm_randu_value x = let ((v, x1, w), r) = next_lehmer_value (65539u, x,
 ///<equation>$$b_{i+1} = (172 \cdot b_i)\ mod\ 30307$$</equation>
 ///<equation>$$c_{i+1} = (170 \cdot c_i)\ mod\ 30323$$</equation>
 ///and once a, b and c are adjusted, the next value x of the sequence is normalized as
-///<equation>$$x = \left( \frac{a}{30269}+\frac{b}{30307}+\frac{c}{30323}\right )\ mod\ 1$$</equation>
+///<equation>$$x = \left( \frac{a}{30269}+\frac{b}{30307}+\frac{c}{30323}\right )\ mod\ 1.0$$</equation>
 ///</remarks>
 let next_wichmann_hill_value (a, b, c) =
     let A = 30269

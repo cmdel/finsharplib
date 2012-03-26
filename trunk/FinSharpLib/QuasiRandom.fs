@@ -159,11 +159,11 @@ let latin_permutations n random_sequence =
 ///<equation>$$P=\left ( \frac{i}{n}\ , \frac{i+1}{n}\right ) \textup{ for } i=0...n-1$$</equation>
 ///<equation>$$G = \{(q_0, q_1, .., q_{n-1})\ |\ q_0 \in P, q_1 \in P ... q_{n-1} \in P\}$$</equation>
 ///A sample is a tuple of n real numbers between zero and one, with one value for dimension:
-///<equation>$$S=\{(x_0, x_1, .., x_{n-1})\ |\ x_0 \in (0,1), x1 \in (0,1), ..x_{n-1} \in (0,1) \}</equation>
+///<equation>$$S=\{(x_0, x_1, .., x_{n-1})\ |\ x_0 \in (0,1), x1 \in (0,1), ..x_{n-1} \in (0,1) \}$$</equation>
 ///In a classical Monte Carlo simulation, we would select any random tuple for S and we'd be done. But in our case,
 ///a set of samples form a Latin Hypercube Sample-Set only if there is no pair (U,V) in that set such that they both
 ///draw from the same partition for any given dimension:
-///<equation>$$\nexists\ U, V \in S, i \in \mathbb{N} : U \neq V\textup{ and }U_d \in P_i \textup{ and } V_d \in P_i\newline$$</equation>
+///<equation>$$\nexists\ U, V \in S, i \in \mathbb{N} : U \neq V\textup{ and }U_d \in P_i \textup{ and } V_d \in P_i$$</equation>
 ///For example, with 10 partitions, (0.15, 0.52) (0.52, 0.15) (0.25, 0.85) is acceptable, but
 ///(0.15, 0.52)(0.16, 0.82)(0.35, 0.92) is not because 0.15 and 0.16 fall within the same partition.
 ///</remarks>

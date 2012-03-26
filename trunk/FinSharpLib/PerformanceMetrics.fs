@@ -210,7 +210,7 @@ let romad x k = (total_return x) / (maximum_drawdown x k)
 ///<remarks>
 ///This function is effectively the sample standard deviation function, but it only accumulates into the sum of squared
 ///deviations values that fall below the mean. Any positive values contribute 0 to the sum:
-///<equation>$$\sigma_\circleddash   =\sqrt{\sum_{i=1}^N{\frac{\textup{[min}(R_i-\bar{R},0)]^2}{N-1}}}$$</equation>
+///<equation>$$\sigma_\ominus =\sqrt{\sum_{i=1}^N{\frac{\textup{[min}(R_i-\bar{R},0)]^2}{N-1}}}$$</equation>
 ///</remarks>
 let downside_deviation x =
     let meanx = arithmetic_mean x in
@@ -263,7 +263,7 @@ let roys_safety_first x threshold steps_per_year =
 ///<param name="steps_per_year">The number of holding periods per years in the given asset values</param>
 ///<remarks>
 ///Given a threshold minimum acceptable return of H, the Sortino Ratio is calculated as:
-///<equation>$$SF_p = \frac{R_p-H}{\sigma_{\circleddash p}}\ \ \textup{where }\sigma_\circleddash   =\sqrt{\sum_{i=1}^N{\frac{\textup{[min}(R_i-\bar{R},0)]^2}{N-1}}}$$</equation>
+///<equation>$$SF_p = \frac{R_p-H}{\sigma_{\ominus p}}\ \ \textup{where }\sigma_\ominus   =\sqrt{\sum_{i=1}^N{\frac{\textup{[min}(R_i-\bar{R},0)]^2}{N-1}}}$$</equation>
 ///As with several other measures based on the Sharpe Ratio,
 ///since Sharpe has revised his original standard deviation of portfolio to standard deviation
 ///of excess returns over the risk-free rate, it makes sense to consider doing the same for
@@ -317,10 +317,10 @@ let percent_down_ratio x =
 ///To calculate the numerator, we compound the portfolio returns R for periods i where the benchmark
 ///returns B were strictly greater than zero, then annualize the result using the holding period h for a
 ///single interval, adjusted for the number of up-market holding periods:
-///<equation>$$R_{\{i : B_i&gt;0 \}}=\left [ \left \prod \left (1+\{R_i : B_i &gt; 0\} \right )\right ]^{q}-1 \textup{  where }q = \left ( h \cdot \left | \{ i : B_i &gt; 0\} \right | \right )^{-1}$$</equation>
+///<equation>$$R_{\{i : B_i&gt;0 \}}=\left [ \prod \left (1+\{R_i : B_i &gt; 0\} \right )\right ]^{q}-1 \textup{  where }q = \left ( h \cdot \left | \{ i : B_i &gt; 0\} \right | \right )^{-1}$$</equation>
 ///To calculate the compounded, annualized benchmark returns for those periods, we do exactly the same as above,
 ///except we accumulate benchmark returns instead of portfolio returns:
-///<equation>$$B_{\{i : B_i&gt;0 \}}=\left [ \left \prod \left (1+\{B_i : B_i &gt; 0\} \right )\right ]^{q}-1 \textup{  where }q = \left ( h \cdot \left | \{ i : B_i &gt; 0\} \right | \right )^{-1}$$</equation>
+///<equation>$$B_{\{i : B_i&gt;0 \}}=\left [ \prod \left (1+\{B_i : B_i &gt; 0\} \right )\right ]^{q}-1 \textup{  where }q = \left ( h \cdot \left | \{ i : B_i &gt; 0\} \right | \right )^{-1}$$</equation>
 ///</remarks>
 let up_capture_ratio x b steps_per_year =
     let up_pairs = Seq.zip (holding_period_return x) (holding_period_return b) |> Seq.filter (fun p -> snd(p) > 0.0)
@@ -344,10 +344,10 @@ let up_capture_ratio x b steps_per_year =
 ///To calculate the numerator, we compound the portfolio returns R for periods i where the benchmark
 ///returns B were strictly less than zero, then annualize the result using the holding period h for a
 ///single interval, adjusted for the number of down-market holding periods:
-///<equation>$$R_{\{i : B_i&lt;0 \}}=\left [ \left \prod \left (1+\{R_i : B_i &lt; 0\} \right )\right ]^{q}-1 \textup{  where }q = \left ( h \cdot \left | \{ i : B_i &lt; 0\} \right | \right )^{-1}$$</equation>
+///<equation>$$R_{\{i : B_i&lt;0 \}}=\left [ \prod \left (1+\{R_i : B_i &lt; 0\} \right )\right ]^{q}-1 \textup{  where }q = \left ( h \cdot \left | \{ i : B_i &lt; 0\} \right | \right )^{-1}$$</equation>
 ///To calculate the compounded, annualized benchmark returns for those periods, we do exactly the same as above,
 ///except we accumulate benchmark returns instead of portfolio returns:
-///<equation>$$B_{\{i : B_i&lt;0 \}}=\left [ \left \prod \left (1+\{B_i : B_i &lt; 0\} \right )\right ]^{q}-1 \textup{  where }q = \left ( h \cdot \left | \{ i : B_i &lt; 0\} \right | \right )^{-1}$$</equation>
+///<equation>$$B_{\{i : B_i&lt;0 \}}=\left [ \prod \left (1+\{B_i : B_i &lt; 0\} \right )\right ]^{q}-1 \textup{  where }q = \left ( h \cdot \left | \{ i : B_i &lt; 0\} \right | \right )^{-1}$$</equation>
 ///</remarks>
 let down_capture_ratio x b steps_per_year =
     // TODO: refactor so that up-capture and down-capture share the same implementation, except for the filter
